@@ -19,32 +19,31 @@ public:
     LinkedList() : head(nullptr) {}
 
     void delete_spec(int key) {
-    if (head == nullptr) {
+        if (head == nullptr) {
         cout << "Empty Linked List" << endl;
         return;
-    }
+        }
+        Node* current = head;
+        Node* prev = nullptr;
 
-    Node* current = head;
-    Node* prev = nullptr;
-
-    while (current != nullptr && current->data != key) {
+        while (current != nullptr && current->data != key) {
         prev = current;
         current = current->next_node;
-    }
+        }
 
-    if (current == nullptr) {
+        if (current == nullptr) {
         cout << "Value " << key << " not found in the list." << endl;
         return;
-    }
+        }
 
-    if (prev == nullptr) {
-        head = current->next_node;
-    } else {
-        prev->next_node = current->next_node;
-    }
+        if (prev == nullptr) {
+            head = current->next_node;
+        } else {
+            prev->next_node = current->next_node;
+        }
 
-    delete current;
-}
+        delete current;
+    }
 
 
     void insert_end(int value){
