@@ -18,43 +18,54 @@ private:
 public:
     LinkedList() : head(nullptr) {}
 
-    void insert_end(int value){
+    //By iteration
+    void reverse_linklist() {
+        if (head == nullptr)
+        {
+            cout<<"List is empty";
+        }
+        Node* prev = nullptr;
+        Node* current = head;
+        Node* next = nullptr;
+        while (current!=nullptr)
+        {
+            /* code */
+            next = current -> next_node;
+            current -> next_node = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+    }
+
+    //By using Recursion
+    Node* reverse_recursive(Node* current) {
+    if (current == nullptr || current->next_node == nullptr)
+        return current;
+
+    Node* newHead = reverse_recursive(current->next_node);
+    current->next_node->next_node = current;
+    current->next_node = nullptr;
+
+    return newHead;
+}
+
+    void reverse_linklist_recursion() {
+    head = reverse_recursive(head);
+    }
+
+    void insert_start(int value){
         Node* newNode = new Node{value};
         if (head == nullptr)
         {
             head = newNode;
         }else{
             Node* current = head;
-            while (current -> next_node!= nullptr)
-            {
-                /* code */
-                current = current ->next_node ;
-            }
-            current -> next_node = newNode;
-
+            newNode -> next_node = current;
+            head = newNode;
         }
     }
 
-    static LinkedList merge(LinkedList l1 ,LinkedList l2){
-        LinkedList merge;
-        Node* current = l1.head;
-        while (current != nullptr)
-        {
-            /* code */
-            merge.insert_end(current->data);
-            current = current->next_node;
-        }
-        
-        Node* current1 = l2.head;
-        while (current1!=nullptr)
-        {
-            /* code */
-            merge.insert_end(current1->data);
-            current1 = current1->next_node;
-        }
-        return merge;
-        
-    }
     void print() {
         Node* current = head;
         while (current != nullptr) {
@@ -74,18 +85,20 @@ public:
     }
 };
 int main(){
-    LinkedList list;           
-    list.insert_end(10);
-    list.insert_end(20);
-    list.insert_end(30);
-    list.insert_end(40);
+ LinkedList list;           
+    list.insert_start(10);
+    list.insert_start(20);
+    list.insert_start(30);
+    list.insert_start(40);
+    cout<<"Simple " << endl;
+    list.print();
+    //By iteration
+    cout<<"Iteration "<<endl;
+    list.reverse_linklist();
+    list.print(); 
 
-    LinkedList list1;
-    list1.insert_end(15);
-    list1.insert_end(25);
-    list1.insert_end(35);
-    list1.insert_end(45);
-
-    LinkedList merge = LinkedList ::merge(list,list1);
-    merge.print();
+    //By using Recursion
+    cout<< "Recursion " << endl;
+    list.reverse_linklist_recursion();
+    list.print();
 }

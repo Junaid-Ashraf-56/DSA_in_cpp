@@ -41,6 +41,7 @@ public:
         delete current -> next_node;
         current -> next_node = nullptr;
     }
+    
     void insert_end(int value){
         Node* newNode = new Node{value};
         if (head == nullptr)

@@ -36,6 +36,8 @@ public:
             cout<<"Not found";
         }
     }
+
+    
     void insert_end(int value){
         Node* newNode = new Node{value};
         if (head == nullptr)

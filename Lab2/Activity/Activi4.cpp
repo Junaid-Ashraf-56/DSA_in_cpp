@@ -26,7 +26,6 @@ public:
             /* code */
             current = current -> next_node;
         }
-
         if (current != nullptr)
         {
             /* code */
@@ -36,8 +35,6 @@ public:
         }else{
             cout<<"Not found"<<endl;
         }
-        
-        
     }
     void insert_end(int value){
         Node* newNode = new Node{value};

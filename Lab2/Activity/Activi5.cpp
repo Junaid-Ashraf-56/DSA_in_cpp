@@ -29,6 +29,7 @@ public:
         head = head -> next_node;
         delete temp;
     }
+    
     void insert_end(int value){
         Node* newNode = new Node{value};
         if (head == nullptr)
