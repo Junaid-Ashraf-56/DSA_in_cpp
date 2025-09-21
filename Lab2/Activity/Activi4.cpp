@@ -18,11 +18,10 @@ private:
 public:
     LinkedList() : head(nullptr) {}
 
-    void access_value(int value){
+    void insert_specific(int value,int newValue){
         Node* current = head;
         int key = value;
-
-        while (current != nullptr && current -> data != key)
+        while (current != nullptr && current -> data != key )
         {
             /* code */
             current = current -> next_node;
@@ -31,10 +30,14 @@ public:
         if (current != nullptr)
         {
             /* code */
-            cout<< "found  " << current-> data << endl;
+            Node* newNode = new Node{newValue};
+            newNode -> next_node = current -> next_node;
+            current -> next_node = newNode;
         }else{
-            cout<<"Not found";
+            cout<<"Not found"<<endl;
         }
+        
+        
     }
     void insert_end(int value){
         Node* newNode = new Node{value};
@@ -76,9 +79,9 @@ int main(){
     list.insert_end(30);
     list.insert_end(40);
 
-    list.access_value(20);
+    list.insert_specific(20,25);
 
-    // list.print(); 
+    list.print(); 
 
     return 0;
 }

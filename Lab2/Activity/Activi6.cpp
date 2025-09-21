@@ -18,23 +18,28 @@ private:
 public:
     LinkedList() : head(nullptr) {}
 
-    void access_value(int value){
+    void delete_last(){
+        if (head == nullptr)
+        {
+            /* code */
+            cout<<"Empty Linked List ";
+            return;
+        }
+        if (head -> next_node == nullptr)
+        {
+            /* code */
+            delete head;
+            head = nullptr;
+            return;
+        }
         Node* current = head;
-        int key = value;
-
-        while (current != nullptr && current -> data != key)
+        while (current -> next_node -> next_node != nullptr)
         {
             /* code */
             current = current -> next_node;
         }
-
-        if (current != nullptr)
-        {
-            /* code */
-            cout<< "found  " << current-> data << endl;
-        }else{
-            cout<<"Not found";
-        }
+        delete current -> next_node;
+        current -> next_node = nullptr;
     }
     void insert_end(int value){
         Node* newNode = new Node{value};
@@ -76,9 +81,9 @@ int main(){
     list.insert_end(30);
     list.insert_end(40);
 
-    list.access_value(20);
+    list.delete_last();
 
-    // list.print(); 
+    list.print(); 
 
     return 0;
 }
