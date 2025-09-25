@@ -30,7 +30,6 @@ public:
 
         if (current != nullptr)
         {
-            /* code */
             cout<< "found  " << current-> data << endl;
         }else{
             cout<<"Not found";

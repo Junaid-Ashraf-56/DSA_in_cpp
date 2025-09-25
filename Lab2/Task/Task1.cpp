@@ -40,18 +40,18 @@ public:
 
     //By using Recursion
     Node* reverse_recursive(Node* current) {
-    if (current == nullptr || current->next_node == nullptr)
-        return current;
+        if (current == nullptr || current->next_node == nullptr)
+            return current;
 
-    Node* newHead = reverse_recursive(current->next_node);
-    current->next_node->next_node = current;
-    current->next_node = nullptr;
+        Node* newHead = reverse_recursive(current->next_node);
+        current->next_node->next_node = current;
+        current->next_node = nullptr;
 
-    return newHead;
-}
+        return newHead;
+    }
 
     void reverse_linklist_recursion() {
-    head = reverse_recursive(head);
+        head = reverse_recursive(head);
     }
 
     void insert_start(int value){
