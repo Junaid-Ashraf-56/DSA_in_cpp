@@ -7,7 +7,7 @@ public:
     /* data */
     string data;
     Node* next_node;
-    Node(const string& data): data(data),next_node(NULL){};
+    Node(const string data): data(data),next_node(NULL){};
 };
 
 class LinkedList

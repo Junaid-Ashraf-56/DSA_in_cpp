@@ -9,7 +9,10 @@ private:
 
 public:
     LinkedList(const string& data): data(data),next_node(NULL){};
-    
+    LinkedList(string data,LinkedList* next_node){
+        this->data=data;
+        this->next_node=next_node;
+    }
     void setNext(LinkedList* next){
         next_node = next;
     }

@@ -18,6 +18,11 @@ private:
 public:
     LinkedList() : head(nullptr) {}
 
+    void delete_first(){
+        Node* temp = head;
+        head = head->next_node;
+        delete temp;
+    }
     void delete_last(){
         if (head == nullptr)
         {
@@ -82,7 +87,7 @@ int main(){
     list.insert_end(30);
     list.insert_end(40);
 
-    list.delete_last();
+    list.delete_first();
 
     list.print(); 
 

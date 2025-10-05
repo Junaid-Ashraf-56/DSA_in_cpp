@@ -41,7 +41,8 @@ public:
             return;
         }
         redoStack.push(content);
-        content = undoStack.top();        undoStack.pop();
+        content = undoStack.top();
+        undoStack.pop();
     }
 
     void redo() {

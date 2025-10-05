@@ -40,7 +40,6 @@ public:
             while (current-> next_node!=nullptr)
             {
                current = current -> next_node;
-
             }
             current -> next_node = newNode;
         }
