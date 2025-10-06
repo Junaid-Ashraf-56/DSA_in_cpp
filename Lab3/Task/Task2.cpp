@@ -41,6 +41,85 @@ public:
         head = newNode;
     }
 
+    //Swap 2 nodes
+    void swap(int val1,int val2){
+        if (val1==val2)
+        {
+            cout<<"No need to swap these values";
+            return;
+        }
+        
+        Node* node1 = nullptr;
+        Node* node2 = nullptr;
+
+        while (head!=nullptr)
+        {
+            Node* current = head;
+            if (current->value==val1)
+            {
+                node1 = current;
+            }
+            if (current->value==val2)
+            {
+                node2 = current;
+            }
+            current = current->next;
+        }
+
+        //values are not present
+        if(node1==nullptr || node2==nullptr){
+            cout<<"one or both are not in the list";
+            return;
+        }
+
+        //Case 1: If node1 is before node2
+        if (node1->next==node2)
+        {
+            if (node1->prev)node1->prev->next=node2;
+            if (node2->next)node2->next->prev=node1;
+
+            node1->next = node2->next;
+            node2->prev = node1->prev;
+
+            node2->next=node1;
+            node1->prev=node2;
+        }else if(node2->next==node1)
+        {
+            if (node2->prev)node2->prev->next=node1;
+            if (node1->next)node1->next->prev=node2;
+
+            node2->next=node1->next;
+            node1->prev=node2->prev;
+
+            node1->next=node2;
+            node2->prev=node1;
+        }else
+        {
+            Node* tempPrev = node1->prev;
+            Node* tempNext = node1->next;
+
+            if (node1->prev) node1->prev->next = node2;
+            if (node1->next) node1->next->prev = node2;
+
+            if (node2->prev) node2->prev->next = node1;
+            if (node2->next) node2->next->prev = node1;
+
+            node1->prev = node2->prev;
+            node1->next = node2->next;
+
+            node2->prev = tempPrev;
+            node2->next = tempNext;
+        }
+        
+        if (head == node1) head = node2;
+        else if (head == node2) head = node1;
+
+        if (tail == node1) tail = node2;
+        else if (tail == node2) tail = node1;
+
+        cout << "Nodes swapped successfully.\n";
+
+    }
        //display all values
     void display(){
         if (head==nullptr)

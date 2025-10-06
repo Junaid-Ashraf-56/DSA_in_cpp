@@ -17,29 +17,63 @@ public:
         this->value=value;
     }
 };
+class SNode {
+    public:
+        int value;
+        SNode* next;
+
+        SNode(int val) {
+            value = val;
+            next = nullptr;
+        }
+};
+
 class dll
 {
-private:
-    Node* head = nullptr;
-    Node* tail = nullptr;
-public:
+    private:
+        Node* head = nullptr;
+        Node* tail = nullptr;
+    public:
 
-    //insert at start
-    void insertFirst(int value){
-        Node* newNode = new Node(value);
-        
-        newNode ->next=head;
-        newNode ->prev=nullptr;
-        
-        if (head!=nullptr)
-        {
-            head->prev=newNode;
-        }else{
-            tail = newNode;
+        //insert at start
+        void insertFirst(int value){
+            Node* newNode = new Node(value);
+            
+            newNode ->next=head;
+            newNode ->prev=nullptr;
+            
+            if (head!=nullptr)
+            {
+                head->prev=newNode;
+            }else{
+                tail = newNode;
+            }
+            
+            head = newNode;
         }
-        
-        head = newNode;
-    }
+
+    dll convertToDoublyLinkedList(SNode* singlyHead) {
+        dll newList;
+
+        Node* prevNode = nullptr;
+        while (singlyHead != nullptr) {
+            Node* newNode = new Node(singlyHead->value);
+
+            if (newList.head == nullptr) {
+                newList.head = newNode;
+                newList.tail = newNode;
+            } else {
+                prevNode->next = newNode;
+                newNode->prev = prevNode;
+                newList.tail = newNode;
+            }
+
+            prevNode = newNode;
+            singlyHead = singlyHead->next;
+        }
+
+        return newList;
+    }   
 
        //display all values
     void display(){

@@ -17,6 +17,7 @@ public:
         this->value=value;
     }
 };
+
 class dll
 {
 private:
@@ -41,25 +42,7 @@ public:
         head = newNode;
     }
 
-    //Reverse linked list
-    void reverseLinkedList(){
-        Node* current = head;
-        Node* temp = nullptr;
-
-        while (current != nullptr) {
-            temp = current->prev;
-            current->prev = current->next;
-            current->next = temp;
-
-            current = current->prev;
-        }
-
-        if (temp != nullptr) {
-            head = temp->prev;
-        }
-    }
-
-       //display all values
+    //display all values
     void display(){
         if (head==nullptr)
         {
@@ -67,6 +50,20 @@ public:
             /* code */
         }
         Node* current = head;
+        // cout<<"head "<<"\n";
+        // while (current!=nullptr)
+        // {
+        //     cout<<"Current value "<<current->value<<" "<<"\n";
+        //     cout<<"Current address "<<current <<"\n";
+        //     cout<<"Previous address "<<current->prev<<" "<<"\n";
+        //     cout<<"Next address "<<current->next<<" "<<"\n";
+        //     current = current->next;
+        //     cout<<"\n";
+        // }
+        // cout<<"null" <<"\n";
+        
+        // current = head;
+
         cout<<"head "<<" -> ";
         while (current!=nullptr)
         {
@@ -88,6 +85,7 @@ public:
         tail = nullptr;
         cout << "All nodes deleted. Destructor called." << endl;
     }
+
 };
 int main(){
     dll list;

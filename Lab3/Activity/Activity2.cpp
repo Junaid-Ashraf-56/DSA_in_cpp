@@ -17,6 +17,7 @@ public:
         this->value=value;
     }
 };
+
 class dll
 {
 private:
@@ -41,25 +42,42 @@ public:
         head = newNode;
     }
 
-    //Reverse linked list
-    void reverseLinkedList(){
-        Node* current = head;
-        Node* temp = nullptr;
-
-        while (current != nullptr) {
-            temp = current->prev;
-            current->prev = current->next;
-            current->next = temp;
-
-            current = current->prev;
+    //insert at last
+    void insertLast(int value){
+        if (head==nullptr)
+        {
+            /* code */
+            insertFirst(value);
         }
+        Node* newNode = new Node(value);
+        newNode->prev = tail;
+        newNode->next = nullptr;
 
-        if (temp != nullptr) {
-            head = temp->prev;
-        }
+        tail->next = newNode;
+        tail = newNode;
     }
 
-       //display all values
+    //search in the list
+    void search(int value){
+        if (head==nullptr)
+        {
+            cout<<"list not found";
+            return;
+        }
+        Node* current = head;
+        while (current!=nullptr)
+        {
+            if (current->value==value)
+            {
+                cout<<"value found"<<"\n";
+                return;
+            }
+            current = current->next;
+        }
+        cout<<"not found"<<"\n";
+    }
+
+     //display all values
     void display(){
         if (head==nullptr)
         {
@@ -67,6 +85,20 @@ public:
             /* code */
         }
         Node* current = head;
+        // cout<<"head "<<"\n";
+        // while (current!=nullptr)
+        // {
+        //     cout<<"Current value "<<current->value<<" "<<"\n";
+        //     cout<<"Current address "<<current <<"\n";
+        //     cout<<"Previous address "<<current->prev<<" "<<"\n";
+        //     cout<<"Next address "<<current->next<<" "<<"\n";
+        //     current = current->next;
+        //     cout<<"\n";
+        // }
+        // cout<<"null" <<"\n";
+        
+        // current = head;
+
         cout<<"head "<<" -> ";
         while (current!=nullptr)
         {
@@ -88,16 +120,25 @@ public:
         tail = nullptr;
         cout << "All nodes deleted. Destructor called." << endl;
     }
+
 };
+
 int main(){
     dll list;
+    list.insertFirst(5);
     list.insertFirst(4);
     list.insertFirst(3);
-    list.insertFirst(2);
+    list.insertLast(6);
+    list.insertLast(8);
+    list.insertBefore(2,3);
+    list.insertBefore(7,8);
+    list.insertAfter(9,8);
     list.insertFirst(1);
-
     list.display();
 
-    list.reverseLinkedList();
-    list.display();
+    list.deleteSpecific(5);
+    // list.search(5);
+    // list.search(10);
+
+    return 0;
 }
