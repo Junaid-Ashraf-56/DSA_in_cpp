@@ -37,7 +37,6 @@ public:
             head = newNode;
         }
     }
-
     void display() {
         if (!head) {
             cout << "List is empty\n";

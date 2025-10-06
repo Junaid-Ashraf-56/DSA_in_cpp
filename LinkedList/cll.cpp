@@ -105,6 +105,45 @@ public:
         cout<<"Not found";
     }
 
+    void deleteSpecific(int value){
+        if (!head)
+        {
+            cout<<"List is empty";
+            return;
+        }
+
+        if (head->value==value)
+        {
+            Node* temp = head;
+            tail->next=head->next;
+            head=head->next;
+            delete temp;
+            return;
+        }
+
+        Node* current = head;
+        do
+        {
+            if (current->next->value==value)
+            {
+                Node* temp = current->next;
+
+                if (temp == tail)
+                {
+                    tail = current;
+                }
+                
+                current->next = temp->next;
+                
+                delete temp;
+                return;
+            }
+            current = current->next;
+
+        } while (current!=head);
+        cout<<"Not found";
+    }
+
     void display() {
         if (!head) {
             cout << "List is empty\n";
