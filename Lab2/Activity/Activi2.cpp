@@ -24,7 +24,6 @@ public:
         {
             head = newNode;
         }else{
-            Node* current = head;
             newNode->next_node = head;
             head = newNode;
 
