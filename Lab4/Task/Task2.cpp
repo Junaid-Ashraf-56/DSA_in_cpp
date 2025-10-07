@@ -40,20 +40,18 @@ public:
         CNode* prev = nullptr;
 
         while (current->next != current) {
-            // Move (step - 1) times
             for (int i = 1; i < step; ++i) {
                 prev = current;
                 current = current->next;
             }
 
-            // Delete current
             prev->next = current->next;
             delete current;
             current = prev->next;
         }
 
         head = current;
-        return current->value; // Survivor
+        return current->value;
     }
 
     // Display list

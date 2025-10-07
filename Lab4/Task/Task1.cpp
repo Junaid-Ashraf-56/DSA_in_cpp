@@ -33,23 +33,29 @@ public:
 
     void deleteByParity(bool deleteEven) {
         if (!head) return;
+
         CNode* current = head;
         CNode* prev = nullptr;
+
         while ((head->value % 2 == 0) == deleteEven) {
+
             if (head->next == head) {
                 delete head;
                 head = nullptr;
                 return;
             }
+
             CNode* last = head;
             while (last->next != head) {
                 last = last->next;
             }
+
             CNode* temp = head;
             head = head->next;
             last->next = head;
             delete temp;
         }
+
         current = head->next;
         prev = head;
         while (current != head) {

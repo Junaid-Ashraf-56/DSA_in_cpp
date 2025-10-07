@@ -45,7 +45,7 @@ public:
             if (current->next) {
                 current->next->prev = prev;
             } else {
-                tail = prev; // Update tail if last node is deleted
+                tail = prev;
             }
             current = current->next;
             delete toDelete;
