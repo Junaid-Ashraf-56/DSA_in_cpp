@@ -19,6 +19,17 @@ public:
         delete[] arr;
     }
 
+    void resize(){
+       int newSize = size * 2;
+        int* temp = new int[newSize];
+        for (int i = 0; i < size; i++) {
+            temp[i] = arr[i];
+        }
+        delete[] arr;
+        arr = temp;
+        size = newSize;
+    }
+
     bool isEmpty(){
         return rear < front;
     }
@@ -30,8 +41,7 @@ public:
     void enqueue(int value){
         if (isFull())
         {
-            cout<<"Array is full";
-            return;
+            resize();
         }
         arr[++rear] = value;
     }
@@ -49,6 +59,11 @@ public:
             arr[i-1] = arr[i] ;
         }
         rear--;
+
+        if (rear < 0) {
+            front = 0;
+            rear = -1;
+        }
     }
 
     void display(){
